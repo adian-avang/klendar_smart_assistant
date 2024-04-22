@@ -30,7 +30,7 @@ export async function addTask({
 }) {
   const kindeId = await getFromServer_kindeId()
 
-  await prisma.task.create({
+  const task = await prisma.task.create({
     data: {
       title,
       content,
@@ -45,6 +45,7 @@ export async function addTask({
     },
   })
   revalidatePath('/calendar')
+  return task
 }
 
 export async function updateTask({
