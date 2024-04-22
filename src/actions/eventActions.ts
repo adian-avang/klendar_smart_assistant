@@ -15,6 +15,19 @@ export async function getEvents() {
   })
   return events
 }
+export async function getInvitations() {
+  const kindeId = await getFromServer_kindeId()
+
+  const invitations = await prisma.user.findUnique({
+    where: {
+      kindeId,
+    },
+    select: {
+      invitedEvents: true,
+    },
+  })
+  return invitations
+}
 export async function addEvent({
   title,
   content,
