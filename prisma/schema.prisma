@@ -9,7 +9,40 @@ datasource db {
 }
 
 model Task {
-  id          Int     @id @default(autoincrement())
-  title       String  @db.VarChar(255)
-  description String?
+  id                   Int      @id @default(autoincrement())
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  title                String   @db.VarChar(255)
+  content              String?
+  done                 Boolean  @default(false)
+  start                DateTime @default(now())
+  end                  DateTime @default(now())
+  allDay               Boolean  @default(false)
+  createdBy            User     @relation(fields: [createdByKindeAuthId], references: [kindeId])
+  createdByKindeAuthId String
+}
+
+model Event {
+  id                   Int      @id @default(autoincrement())
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  title                String   @db.VarChar(255)
+  content              String?
+  start                DateTime @default(now())
+  end                  DateTime @default(now())
+  allDay               Boolean  @default(false)
+  createdBy            User     @relation(fields: [createdByKindeAuthId], references: [kindeId], name: "CreatedBy")
+  createdByKindeAuthId String
+  invitedUsers         User[]   @relation("InvitedTo")
+}
+
+model User {
+  id            Int     @id @default(autoincrement())
+  kindeId       String  @unique
+  email         String  @unique
+  firstName     String
+  lastName      String
+  tasks         Task[]
+  createdEvents Event[] @relation("CreatedBy")
+  invitedEvents Event[] @relation("InvitedTo")
 }
