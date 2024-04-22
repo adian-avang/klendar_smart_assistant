@@ -1,11 +1,11 @@
-import { getAllUsers } from '@/actions/userActions'
 import CalendarPage from '@/components/Calendar/CalendarPage'
-import { sendMail } from '@/lib/mail'
+import { askToServer_isAuthenticated, isFirstTime } from '@/utils/Auth/auth'
+import { redirect } from 'next/navigation'
 
 const page = async () => {
-  const usersEmails = await getAllUsers()
-  console.log(usersEmails)
-  sendMail([usersEmails[0].email])
+  const isAuth = await askToServer_isAuthenticated()
+  isAuth ? isFirstTime() : redirect('/api/auth/login')
+
   return <CalendarPage />
 }
 
