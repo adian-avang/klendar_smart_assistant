@@ -10,7 +10,7 @@ const CalendarLayout = ({ children }: Readonly<{ children: ReactNode }>) => {
       </aside>
       <main className='grow'>
         <div className='h-full flex flex-col'>
-          <nav className='bg-slate-600 p-2'>
+          <nav>
             <Navbar />
           </nav>
           <div className='h-full p-5'>{children}</div>
