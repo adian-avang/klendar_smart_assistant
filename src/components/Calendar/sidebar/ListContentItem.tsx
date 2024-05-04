@@ -1,4 +1,4 @@
-import { getEvent } from "@/actions/eventActions";
+import { getEvent, getInvitation, getInvitations } from "@/actions/eventActions";
 import { getTask } from "@/actions/taskActions";
 
 export default  function ListContentItem({
@@ -23,7 +23,7 @@ export default  function ListContentItem({
         result = await getEvent(id);
         break;
       default:
-        alert(title);
+        result = await getInvitation(id);
     }
     console.log(result)
     alert(JSON.stringify(result))

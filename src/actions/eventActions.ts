@@ -39,6 +39,28 @@ export async function getInvitations() {
   })
   return invitations
 }
+/**
+ * Retrieves an invitation by its ID.
+ *
+ * @param {string} id - The ID of the invitation to retrieve.
+ * @return {Promise<Event | undefined>} The invitation with the given ID, or undefined if not found.
+ */
+export async function getInvitation(id:string) {
+  const kindeId = await getFromServer_kindeId()
+
+  const invitations = await prisma.user.findUnique({
+    where: {
+      kindeId,
+      
+    },
+    select: {
+      invitedEvents: true,
+    
+    },
+  })
+  const invitation = invitations?.invitedEvents.find((event) => event.id === parseInt(id))
+  return invitation
+}
 export async function addEvent({
   title,
   content,
