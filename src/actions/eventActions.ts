@@ -15,6 +15,17 @@ export async function getEvents() {
   })
   return events
 }
+export async function getEvent(id:string) {
+  const kindeId = await getFromServer_kindeId()
+
+  const event = await prisma.event.findMany({
+    where: {
+      id: parseInt(id),
+      createdByKindeAuthId: kindeId,
+    },
+  })
+  return event
+}
 export async function getInvitations() {
   const kindeId = await getFromServer_kindeId()
 

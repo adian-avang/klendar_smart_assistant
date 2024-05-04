@@ -24,6 +24,7 @@ export async function getTask (id: string) {
       createdByKindeAuthId: kindeId,
     },
   })
+  console.log('tuve aqui')
   return task
 }
 export async function addTask({

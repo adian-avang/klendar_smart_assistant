@@ -10,7 +10,7 @@ interface ListContentProps {
 const ContentList: ListContentProps[] = [
   {
     type: 'task', title: 'Tarea 1',
-    id: "1"
+    id: "40"
   },
   {
     type: 'event', title: 'Evento 2',
@@ -30,7 +30,7 @@ const ListContent = () => {
       <ul className='flex flex-col gap-2'>
         {ContentList.map((item) => (
          <li>
-         <ListContentItem key={item.id} type={item.type} title={item.title} />
+         <ListContentItem key={item.id} type={item.type} title={item.title} id={item.id} />
          </li>
         ))}
       </ul>
