@@ -15,6 +15,17 @@ export async function getTasks() {
   return tasks
 }
 
+export async function getTask (id: string) {
+  const kindeId = await getFromServer_kindeId()
+
+  const task = await prisma.task.findMany({
+    where: {
+      id: parseInt(id),
+      createdByKindeAuthId: kindeId,
+    },
+  })
+  return task
+}
 export async function addTask({
   title,
   content,
