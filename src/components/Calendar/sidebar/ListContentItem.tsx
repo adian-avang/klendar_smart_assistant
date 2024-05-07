@@ -47,7 +47,7 @@ export default  function ListContentItem({
         onClick={() => {
           handleClick();
         }}
-        className={`p-2 rounded-md border border-slate-200 shadow hover:cursor-pointer ${colorClass}`}
+        className={`p-2 rounded-md border border-gray-300 shadow hover:cursor-pointer ${colorClass}`}
       >
         <div className="flex flex-col place-items-start">
           <h3 className="text-xl font-semibold">{title}</h3>
