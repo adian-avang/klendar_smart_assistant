@@ -18,7 +18,7 @@ export async function getEvents() {
 export async function getEvent(id:string) {
   const kindeId = await getFromServer_kindeId()
 
-  const event = await prisma.event.findMany({
+  const event = await prisma.event.findUnique({
     where: {
       id: parseInt(id),
       createdByKindeAuthId: kindeId,
