@@ -65,7 +65,6 @@ export default async function ListContentItem({
           <h3 className="text-xl font-semibold">{title}</h3>
         </div>
       </div>
-      <EventForm />
     </>
   );
 }
